@@ -122,7 +122,7 @@ def get_user_profile(headers:dict=HEADERS):
     url = USER_URL
     data = _get(url, headers=headers)
     return User(id=data.get("sub", None),
-        username=data.get("preferred_username", None),
+        username=data.get("sub", None),
         full_name=data.get("name", None),
         email=data.get("email", None),
     )

@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import uuid
+
 from django.db import transaction as tx
 from django.db import IntegrityError
 from django.utils.translation import ugettext as _
@@ -54,6 +56,8 @@ def openid_register(username:str, email:str, full_name:str, openid_id:int, token
             auth_data_model.objects.create(user=user, key="openid", value=openid_id, extra={})
         except user_model.DoesNotExist:
             # Create a new user
+            username = uuid.uuid1().hex
+
             username_unique = slugify_uniquely(username, user_model, slugfield="username")
             user = user_model.objects.create(email=email,
                                              username=username_unique,

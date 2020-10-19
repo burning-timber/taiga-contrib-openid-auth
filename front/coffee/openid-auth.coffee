@@ -82,7 +82,7 @@ OpenIDLoginButtonDirective = ($window, $params, $location, $config, $events, $co
 		$el.on "click", ".button-auth", (event) ->
 			console.log(redirectURL());
 			redirectToUri = redirectURL();
-			url = "#{AUTH_URL}?redirect_uri=#{redirectToUri}&client_id=#{CLIENT_ID}&response_type=code"
+			url = "#{AUTH_URL}?redirect_uri=#{redirectToUri}&client_id=#{CLIENT_ID}&response_type=code&scope=profile name email openid"
 			window.location.href = url
 
 		$scope.$on "$destroy", ->
